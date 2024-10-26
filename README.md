@@ -48,5 +48,5 @@ README for NOAA team
    3) ./pcrtm_omps_simulator.exe
 
 3. Compile vlidort library 
-make -f makefile_vlidort clean
-make -f makefile_vlidort
+   1) make -f makefile_vlidort clean
+   2) make -f makefile_vlidort
