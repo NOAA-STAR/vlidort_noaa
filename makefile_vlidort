@@ -1,0 +1,310 @@
+#
+# This file serves as the head Makefile for VLIDORT and its "tester" programs
+#
+
+# UPGRADE TO VLIDORT VERSION 2.7, May   2014
+# UPGRADE TO VLIDORT VERSION 2.8, March 2017, together with FO code Version 1.5
+# UPGRADE TO VLIDORT VERSION 2.8.1, August 2019
+#      4/9/19.   Removal of TRANSFLUX MASTER Routine
+#      4/19/19.  Introduction of mediaprops routines (3 in all)
+#      5/1/19.   Supplement and FO codes no compilation changes
+#      6/3/19.   Introduce 2 new special tests (Planetary/LWCoupling)
+# UPGRADE TO VLIDORT VERSION 2.8.3, 31 March 2021
+
+#
+# Define some variables
+#
+
+UTIL_PATH       = util
+VSUP_PATH       = vsup
+FO_MAIN_PATH    = vlidort_focode
+VLID_DEF_PATH   = vlidort_def
+VLID_MAIN_PATH  = vlidort_main
+VLID_MAIN_PATH1 = vlidort_main/regular
+VLID_MAIN_PATH2 = vlidort_main/linearized
+VLID_PCRTM_PATH = pcrtm_vlidort
+VLID_TEST_PATH  = pcrtm_vlidort_test
+
+	
+MOD_PATH = mod
+OBJ_PATH = obj
+
+MOD_FILES = $(MOD_PATH)/*.mod
+OBJ_FILES = $(OBJ_PATH)/*.o
+
+#
+# Define default shell make will use
+#
+
+SHELL = /bin/bash
+
+#
+# Define FORTRAN90 compiler to use (can be defined here, but usually defined on makefile command line)
+#
+
+#  Intel
+FC = ifort
+
+#  gfortran
+#FC = gfortran
+
+#  g95
+#FC = g95
+
+#  NAG
+#FC = f95
+
+#
+# Define FORTRAN90 compiler flags
+#
+
+FFLAGS = -c
+
+# Additional flags for Intel
+ifeq ($(FC), ifort)
+#	FFLAGS := $(FFLAGS) -I$(MOD_PATH) -module $(MOD_PATH)
+	FFLAGS := $(FFLAGS) -I$(MOD_PATH) -module $(MOD_PATH)  -assume byterecl    # added By Xiong
+	FFLAGS_DEBUG = -g -warn all -check all -traceback
+	FFLAGS_OPT = -O3
+        FFLAGS_OPENMP = -openmp
+
+endif
+
+# Additional flags for gfortran
+ifeq ($(FC), gfortran)
+	FFLAGS := $(FFLAGS) -I$(MOD_PATH) -J$(MOD_PATH)
+#	FFLAGS_DEBUG = -g -Wall -fbounds-check
+#	FFLAGS_DEBUG = -g -Wall -fbounds-check -fbacktrace
+	FFLAGS_DEBUG = -g -C -Wall -fbounds-check -frange-check -ffpe-trap=invalid,zero,overflow
+	FFLAGS_OPT = -O3
+        FFLAGS_OPENMP = -fopenmp -frecursive
+endif
+
+# Additional flags for g95
+ifeq ($(FC), g95)
+#      older g95
+	FFLAGS := $(FFLAGS) -I$(MOD_PATH) -fmod=$(MOD_PATH)
+#	FFLAGS_DEBUG = -g -Wall -fbounds-check
+	FFLAGS_DEBUG = -g -Wall -Wuninitialized -fbounds-check
+	FFLAGS_OPT = -O3
+#      g95 v0.92
+#	FFLAGS := $(FFLAGS) -I$(MOD_PATH) -fmod=$(MOD_PATH)
+#	FFLAGS_DEBUG = -g -Wall -fbounds-check -ftrace=full
+endif
+
+# Additional flags for NAG
+#ifeq ($(FC), f95)
+ifeq ($(FC), $(filter $(FC), f95 nagfor))
+	FFLAGS := $(FFLAGS) -mdir $(MOD_PATH) -I$(MOD_PATH)
+#	FFLAGS_DEBUG = -w=obs -w=unused -C=array -C=undefined -gline
+	FFLAGS_DEBUG = -w=obs -w=unused -C=all -C=undefined -gline
+#	FFLAGS_DEBUG = -g -C=all -C=undefined -gline -mtrace=all -nan
+#	FFLAGS_DEBUG = -w=obs -w=unused -g -C=all -C=undefined -gline -mtrace=all -nan
+	FFLAGS_OPT = -O3
+        FFLAGS_OPENMP = -openmp
+endif
+
+#  for compilation detailed
+#	FFLAGS := $(FFLAGS) $(FFLAGS_Catch)
+
+# For debug build, use "make DEBUG=t"
+ifeq ($(DEBUG), t)
+	FFLAGS := $(FFLAGS) $(FFLAGS_DEBUG)
+endif
+
+# For optimized build, use "make OPT=t"
+ifeq ($(OPT), t)
+	FFLAGS := $(FFLAGS) $(FFLAGS_OPT)
+endif
+
+# For parallel build using OpenMP, use "make OPENMP=t"
+ifeq ($(OPENMP), t)
+	FFLAGS := $(FFLAGS) $(FFLAGS_OPENMP)
+endif
+
+
+#
+# Define list of source files
+# (Note: ordering is important because of dependencies)
+#
+
+BASE_SOURCES := \
+   $(VLID_DEF_PATH)/vlidort_pars.f90             \
+   $(VLID_DEF_PATH)/vlidort_inputs_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_sup_brdf_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_sup_ss_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_sup_sleave_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_sup_def.f90		 \
+   $(VLID_DEF_PATH)/vlidort_outputs_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_io_defs.f90		 \
+   $(VLID_DEF_PATH)/vlidort_work_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_lin_inputs_def.f90	  \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_brdf_def.f90  \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_ss_def.f90	  \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_sleave_def.f90\
+   $(VLID_DEF_PATH)/vlidort_lin_sup_def.f90	  \
+   $(VLID_DEF_PATH)/vlidort_lin_outputs_def.f90	  \
+   $(VLID_DEF_PATH)/vlidort_lin_io_defs.f90	  \
+   $(VLID_DEF_PATH)/vlidort_lin_work_def.f90	  \
+
+
+M_SOURCES :=     \
+   $(VLID_MAIN_PATH1)/lapack_tools.f90		 \
+   $(VLID_MAIN_PATH1)/vlidort_aux.f90		 \
+   $(VLID_MAIN_PATH1)/vlidort_getplanck.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_geometry.f90       \
+   $(VLID_MAIN_PATH1)/vlidort_Taylor.f90         \
+   $(VLID_MAIN_PATH1)/vlidort_inputs.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_miscsetups.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_vfo_interface.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_thermalsup.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_solutions.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_bvproblem.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_PostProcessing.f90 \
+   $(VLID_MAIN_PATH1)/vlidort_intensity.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_converge.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_writemodules.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_pack.f90		 \
+   $(VLID_MAIN_PATH1)/vlidort_unpack.f90	 \
+   $(VLID_MAIN_PATH1)/vlidort_mediaprops.f90     \
+   $(VLID_MAIN_PATH1)/vlidort_masters_V2p8p3.f90
+
+L_SOURCES := \
+   $(VLID_MAIN_PATH2)/vlidort_l_inputs.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_l_writemodules.f90  \
+   $(VLID_MAIN_PATH2)/vlidort_la_miscsetups.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_l_pack.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_l_unpack.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_l_thermalsup.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_lpc_solutions.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_lpc_bvproblem.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_lbbf_jacobians_vector.f90 \
+   $(VLID_MAIN_PATH2)/vlidort_ls_wfsurface.f90	  \
+   $(VLID_MAIN_PATH2)/vlidort_ls_wfsleave.f90
+
+LPS_SOURCES := \
+   $(VLID_MAIN_PATH2)/vlidort_lp_miscsetups.f90      \
+   $(VLID_MAIN_PATH2)/vlidort_vfo_lps_interface.f90  \
+   $(VLID_MAIN_PATH2)/vlidort_lp_pack.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lp_unpack.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lp_mediaprops.f90      \
+   $(VLID_MAIN_PATH2)/vlidort_lp_solutions.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lp_bvproblem.f90       \
+   $(VLID_MAIN_PATH2)/vlidort_lp_PostProcessing.f90  \
+   $(VLID_MAIN_PATH2)/vlidort_lp_wfatmos.f90         \
+   $(VLID_MAIN_PATH2)/vlidort_lps_converge.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lps_masters_V2p8p3.f90
+
+LCS_SOURCES := \
+   $(VLID_MAIN_PATH2)/vlidort_lc_miscsetups.f90      \
+   $(VLID_MAIN_PATH2)/vlidort_vfo_lcs_interface.f90  \
+   $(VLID_MAIN_PATH2)/vlidort_lc_pack.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lc_unpack.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lc_mediaprops.f90      \
+   $(VLID_MAIN_PATH2)/vlidort_lc_solutions.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lc_bvproblem.f90       \
+   $(VLID_MAIN_PATH2)/vlidort_lc_PostProcessing.f90  \
+   $(VLID_MAIN_PATH2)/vlidort_lc_wfatmos.f90         \
+   $(VLID_MAIN_PATH2)/vlidort_lcs_converge.f90	     \
+   $(VLID_MAIN_PATH2)/vlidort_lcs_masters_V2p8p3.f90
+
+UTIL_SOURCES  := \
+   $(UTIL_PATH)/interp_utility.f90 \
+   $(UTIL_PATH)/file_utility.f90\
+
+PCRTM_SOURCES := \
+   $(VLID_PCRTM_PATH)/PCRTM_SW_Aux.f90 \
+   $(VLID_PCRTM_PATH)/GAS_OPT.f90 \
+   $(VLID_PCRTM_PATH)/pcrtm_lbl_simulator_module.f90 \
+
+# (Include vector supplement source files)
+include $(VSUP_PATH)/makefile.vsup
+
+# (Include first-order source files)
+include $(FO_MAIN_PATH)/makefile.fo_vlidort
+
+VPATH := $(UTIL_PATH) $(VLID_TEST_PATH) \
+        $(VSUP_PATH) $(VBRDF_PATH) $(VBRDFLIN_PATH) \
+	$(VSLEAVE_PATH) $(VFZMAT_PATH) $(VACCESS_PATH) \
+	$(VLID_DEF_PATH) \
+	$(FO_MAIN_PATH) \
+	$(VLID_PCRTM_PATH) \
+	$(VLID_MAIN_PATH) $(VLID_MAIN_PATH1) $(VLID_MAIN_PATH2)
+
+
+# Main vector tests
+VLIDORT_SOURCES_F90 =  \
+   $(BASE_SOURCES) $(UTIL_SOURCES) \
+   $(FO_SOURCES_Vector) $(FO_SOURCES_L_Vector) \
+   $(M_SOURCES) \
+   $(L_SOURCES) \
+   $(LPS_SOURCES) \
+   $(LCS_SOURCES) \
+   $(VBRDF_SUP_SOURCES) \
+   $(VFZMAT_SUP_SOURCES)   \
+   $(VBRDF_LINSUP_SOURCES) \
+   $(VBRDF_SUP_ACCESS_SOURCES) \
+   $(VBRDF_LINSUP_ACCESS_SOURCES) \
+   $(PCRTM_SOURCES) \
+
+#
+# Define object files
+#
+
+VLIDORT_SOURCES := $(notdir $(filter %.f90, $(VLIDORT_SOURCES_F90)))
+VLIDORT_OBJECTS := $(patsubst %.f90, %.o, $(addprefix $(OBJ_PATH)/, $(VLIDORT_SOURCES)))
+
+
+# Define the library
+#
+
+AR      = ar
+ARFLAGS = crvs
+RANLIB  = ranlib
+LIBNAME = vlidort
+LIBRARY = lib$(LIBNAME).a
+PREFIX = .
+LIBDIR = $(PREFIX)/lib \
+       $(PREFIX)/include 
+
+TMPDIR = $(MOD_PATH) $(OBJ_PATH) 
+
+# Define main test program
+main = pcrtm_omps_simulator_main
+
+all: $(TMPDIR) $(LIBNAME)
+
+test : $(LIBRARY) $(main)
+$(LIBNAME) : $(TMPDIR) $(LIBRARY) 
+
+$(main): $(VLID_TEST_PATH)/$(main).o
+	$(FC) $< -o $@  $(LIBRARY)
+
+# make main object files
+$(VLID_TEST_PATH)/%.o : %.f90
+	$(FC) $(FFLAGS) $< -o $@ 
+	
+$(LIBRARY): $(VLIDORT_OBJECTS)
+	@echo $(VLIDORT_SOURCES_F90)
+	$(AR) $(ARFLAGS) $@ $(VLIDORT_OBJECTS)
+	$(RANLIB) $@
+
+# make lib object files
+$(OBJ_PATH)/%.o : %.f90
+	$(FC) $(FFLAGS) $< -o $@ 
+
+install: $(LIBDIR) $(LIBRARY)
+	@echo; echo "Installing vlidort library .....  "
+	@echo; echo "PREFIX=$(PREFIX) "
+	@echo; cp ./$(LIBRARY) $(PREFIX)/lib 
+	@echo; cp $(MOD_PATH)/*.mod  $(PREFIX)/include 
+
+# ...Create directories if necessary
+$(LIBDIR) $(TMPDIR) :
+	- test -d $@ || mkdir -p  $@
+
+.PHONY: clean
+clean:
+	rm -f *.o $(OBJ_FILES) *.mod $(MOD_FILES) *.log *.exe $(main) $(LIBRARY)
+	rm -fr $(OBJ_PATH) $(MOD_PATH) $(PREFIX)/lib $(PREFIX)/include
+
