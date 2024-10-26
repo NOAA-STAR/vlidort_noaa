@@ -1,0 +1,583 @@
+
+****************************************
+        Water surface-leaving
+****************************************
+
+         For Stokes: 1
+
+         STANDARD QUANTITIES
+
+Isotropic SLEAVE, all geometries
+
+              sza     Iso SLEAVE value
+
+Iso            1        1.053825E-03
+
+Exact SLEAVE, all geometries
+
+              sza vza azm    Exact SLEAVE value
+
+Exact          1   1   1      9.917842E-04
+
+Fourier Components:
+
+              Fourier component #  0
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    9.047307E-04
+Solars-Stream  1   2    9.295264E-04
+Solars-Stream  1   3    9.541776E-04
+Solars-Stream  1   4    9.358262E-04
+Solars-Stream  1   5    9.780643E-04
+Solars-Stream  1   6    1.011302E-03
+Solars-Stream  1   7    1.008623E-03
+Solars-Stream  1   8    1.004435E-03
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    1.003501E-03
+
+              Fourier component #  1
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1   -6.146917E-05
+Solars-Stream  1   2   -6.394670E-05
+Solars-Stream  1   3   -6.938084E-05
+Solars-Stream  1   4   -7.413300E-05
+Solars-Stream  1   5   -8.150919E-05
+Solars-Stream  1   6   -7.816393E-05
+Solars-Stream  1   7   -5.887556E-05
+Solars-Stream  1   8   -2.746148E-05
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -1.207232E-05
+
+              Fourier component #  2
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    2.313051E-05
+Solars-Stream  1   2    2.340153E-05
+Solars-Stream  1   3    2.231105E-05
+Solars-Stream  1   4    1.824614E-05
+Solars-Stream  1   5    1.375587E-05
+Solars-Stream  1   6    8.499008E-06
+Solars-Stream  1   7    3.460257E-06
+Solars-Stream  1   8    8.241685E-07
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    1.481972E-07
+
+              Fourier component #  3
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    1.493893E-06
+Solars-Stream  1   2    1.480173E-06
+Solars-Stream  1   3    1.261697E-06
+Solars-Stream  1   4    8.584403E-07
+Solars-Stream  1   5    4.523296E-07
+Solars-Stream  1   6    8.266184E-08
+Solars-Stream  1   7   -2.752088E-07
+Solars-Stream  1   8    7.439344E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    4.239690E-08
+
+              Fourier component #  4
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    2.052731E-07
+Solars-Stream  1   2    2.109088E-07
+Solars-Stream  1   3    2.165486E-07
+Solars-Stream  1   4    1.448083E-07
+Solars-Stream  1   5    7.881178E-08
+Solars-Stream  1   6   -1.254578E-07
+Solars-Stream  1   7   -9.298999E-08
+Solars-Stream  1   8   -1.176302E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -1.311554E-08
+
+              Fourier component #  5
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    8.553632E-09
+Solars-Stream  1   2    5.239132E-09
+Solars-Stream  1   3   -1.135490E-08
+Solars-Stream  1   4    4.450414E-09
+Solars-Stream  1   5    5.237070E-08
+Solars-Stream  1   6   -1.857117E-08
+Solars-Stream  1   7   -5.531697E-08
+Solars-Stream  1   8   -1.522459E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -2.551712E-08
+
+              Fourier component #  6
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    1.496844E-08
+Solars-Stream  1   2    2.925949E-08
+Solars-Stream  1   3    9.548261E-08
+Solars-Stream  1   4    7.449519E-08
+Solars-Stream  1   5   -2.955160E-08
+Solars-Stream  1   6    6.443210E-08
+Solars-Stream  1   7   -4.902435E-08
+Solars-Stream  1   8   -2.201534E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    6.099725E-08
+
+              Fourier component #  7
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1   -3.602994E-08
+Solars-Stream  1   2   -3.611439E-08
+Solars-Stream  1   3   -3.281448E-08
+Solars-Stream  1   4    1.586898E-09
+Solars-Stream  1   5    2.466993E-08
+Solars-Stream  1   6   -7.284995E-08
+Solars-Stream  1   7   -5.988403E-08
+Solars-Stream  1   8    9.383340E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -2.250287E-08
+
+              Fourier component #  8
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    4.598629E-08
+Solars-Stream  1   2    3.416703E-08
+Solars-Stream  1   3   -2.659632E-08
+Solars-Stream  1   4   -1.096372E-08
+Solars-Stream  1   5    2.409416E-08
+Solars-Stream  1   6   -3.077441E-08
+Solars-Stream  1   7   -3.535937E-08
+Solars-Stream  1   8   -6.484573E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    1.432728E-08
+
+              Fourier component #  9
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    5.703978E-08
+Solars-Stream  1   2    5.282103E-08
+Solars-Stream  1   3    2.695997E-08
+Solars-Stream  1   4   -5.306740E-08
+Solars-Stream  1   5    4.148526E-08
+Solars-Stream  1   6    1.283558E-08
+Solars-Stream  1   7    5.203164E-08
+Solars-Stream  1   8    9.797104E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    1.513802E-08
+
+              Fourier component # 10
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    1.505243E-08
+Solars-Stream  1   2    1.899248E-08
+Solars-Stream  1   3    3.612815E-08
+Solars-Stream  1   4    6.034672E-08
+Solars-Stream  1   5   -4.108207E-08
+Solars-Stream  1   6   -2.312566E-08
+Solars-Stream  1   7    2.213218E-08
+Solars-Stream  1   8   -1.446829E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    2.299913E-08
+
+              Fourier component # 11
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1   -5.909975E-08
+Solars-Stream  1   2   -5.783879E-08
+Solars-Stream  1   3   -4.579042E-08
+Solars-Stream  1   4    3.370945E-09
+Solars-Stream  1   5   -2.148481E-08
+Solars-Stream  1   6    1.983520E-08
+Solars-Stream  1   7    6.482494E-08
+Solars-Stream  1   8   -7.548550E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -3.705698E-09
+
+              Fourier component # 12
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    2.677413E-08
+Solars-Stream  1   2    2.717196E-08
+Solars-Stream  1   3    2.630851E-08
+Solars-Stream  1   4    2.804764E-08
+Solars-Stream  1   5    4.486135E-08
+Solars-Stream  1   6   -2.762235E-09
+Solars-Stream  1   7    5.894961E-08
+Solars-Stream  1   8    3.502212E-08
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    2.120336E-08
+
+              Fourier component # 13
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1   -4.373455E-08
+Solars-Stream  1   2   -4.283337E-08
+Solars-Stream  1   3   -3.406893E-08
+Solars-Stream  1   4    1.645002E-09
+Solars-Stream  1   5   -1.609248E-08
+Solars-Stream  1   6    1.402711E-08
+Solars-Stream  1   7    4.630527E-08
+Solars-Stream  1   8   -5.736942E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1   -2.810325E-09
+
+              Fourier component # 14
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    1.747030E-10
+Solars-Stream  1   2    2.096484E-09
+Solars-Stream  1   3    1.119058E-08
+Solars-Stream  1   4    2.472397E-08
+Solars-Stream  1   5   -2.555503E-08
+Solars-Stream  1   6   -1.500729E-08
+Solars-Stream  1   7    9.710060E-09
+Solars-Stream  1   8   -7.738144E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    1.146759E-08
+
+              Fourier component # 15
+
+              sza str    SLEAVE value
+
+Solars-Stream  1   1    2.892741E-08
+Solars-Stream  1   2    2.753560E-08
+Solars-Stream  1   3    1.796552E-08
+Solars-Stream  1   4   -1.247643E-08
+Solars-Stream  1   5    2.256303E-08
+Solars-Stream  1   6    1.058500E-08
+Solars-Stream  1   7    2.237442E-08
+Solars-Stream  1   8    6.029099E-09
+
+               sza vza    SLEAVE value
+
+Solars-Users   1   1    6.663902E-09
+
+
+         WEIGHTING FUNCTIONS (ANALYTIC + FINITE_DIFFERENCE)
+
+Isotropic SLEAVE, all geometries
+
+              sza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Iso            1      6.028373E-04  6.024377E-04   -1.753768E-07 -1.754589E-07
+
+Exact SLEAVE, all geometries
+
+              sza vza azm       Analytic    Finite-diff       Analytic    Finite-diff
+
+Exact          1   1   1      3.850827E-04  3.847520E-04   -1.960595E-07 -1.961921E-07
+
+Fourier Components:
+
+              Fourier component #  0
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      8.687643E-04  8.683363E-04    1.739156E-05  1.737940E-05
+Solars-Stream  1   2      8.845315E-04  8.840938E-04    1.335143E-05  1.334229E-05
+Solars-Stream  1   3      8.700681E-04  8.696284E-04    7.331919E-06  7.326975E-06
+Solars-Stream  1   4      7.705051E-04  7.700937E-04    5.817118E-06  5.816104E-06
+Solars-Stream  1   5      6.781476E-04  6.777481E-04   -4.237430E-06 -4.233141E-06
+Solars-Stream  1   6      5.627887E-04  5.624086E-04   -2.148669E-06 -2.149067E-06
+Solars-Stream  1   7      4.480507E-04  4.477002E-04   -4.745501E-07 -4.747738E-07
+Solars-Stream  1   8      3.748166E-04  3.744825E-04   -2.238143E-07 -2.239579E-07
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      3.616538E-04  3.613238E-04   -1.983757E-07 -1.985167E-07
+
+              Fourier component #  1
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      4.273112E-04  4.272444E-04   -1.181616E-06 -1.180641E-06
+Solars-Stream  1   2      4.336649E-04  4.335976E-04   -9.185104E-07 -9.177303E-07
+Solars-Stream  1   3      4.199057E-04  4.198426E-04   -5.331237E-07 -5.326180E-07
+Solars-Stream  1   4      3.602004E-04  3.601508E-04   -4.608125E-07 -4.606077E-07
+Solars-Stream  1   5      2.994118E-04  2.993764E-04    3.531357E-07  3.528797E-07
+Solars-Stream  1   6      2.226509E-04  2.226286E-04    1.660715E-07  1.661768E-07
+Solars-Stream  1   7      1.402018E-04  1.401930E-04    2.770055E-08  2.775859E-08
+Solars-Stream  1   8      5.755323E-05  5.754953E-05    6.119134E-09  6.141112E-09
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      2.453908E-05  2.453790E-05    2.386499E-09  2.395520E-09
+
+              Fourier component #  2
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      5.040867E-05  5.039262E-05    4.446358E-07  4.443402E-07
+Solars-Stream  1   2      5.064406E-05  5.062795E-05    3.361323E-07  3.359177E-07
+Solars-Stream  1   3      4.658311E-05  4.656840E-05    1.714385E-07  1.713374E-07
+Solars-Stream  1   4      3.347931E-05  3.346853E-05    1.134185E-07  1.134086E-07
+Solars-Stream  1   5      2.321242E-05  2.320562E-05   -5.959684E-08 -5.952936E-08
+Solars-Stream  1   6      1.214467E-05  1.214073E-05   -1.805747E-08 -1.805625E-08
+Solars-Stream  1   7      8.524177E-06  8.524102E-06   -1.628028E-09 -1.626156E-09
+Solars-Stream  1   8      7.821973E-07  7.815302E-07   -1.836463E-10 -1.836302E-10
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -9.995102E-07 -9.993196E-07   -2.929616E-11 -2.939897E-11
+
+              Fourier component #  3
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      8.978480E-06  8.975451E-06    2.871697E-08  2.870057E-08
+Solars-Stream  1   2      8.847299E-06  8.844312E-06    2.126074E-08  2.124982E-08
+Solars-Stream  1   3      7.303212E-06  7.300739E-06    9.694904E-09  9.691366E-09
+Solars-Stream  1   4      4.992450E-06  4.991129E-06    5.336085E-09  5.337329E-09
+Solars-Stream  1   5      3.446300E-06  3.445865E-06   -1.959702E-09 -1.956365E-09
+Solars-Stream  1   6      2.023877E-06  2.023822E-06   -1.756280E-10 -1.749278E-10
+Solars-Stream  1   7      4.220087E-06  4.222098E-06    1.294839E-10  1.299373E-10
+Solars-Stream  1   8     -9.347505E-07 -9.350497E-07   -1.657680E-11 -1.675246E-11
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      5.054768E-07  5.054130E-07   -8.381171E-12 -8.496742E-12
+
+              Fourier component #  4
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      2.271311E-06  2.271340E-06    3.945947E-09  3.943563E-09
+Solars-Stream  1   2      2.357205E-06  2.357232E-06    3.029428E-09  3.027797E-09
+Solars-Stream  1   3      2.531207E-06  2.531219E-06    1.663963E-09  1.663559E-09
+Solars-Stream  1   4      7.347784E-07  7.344575E-07    9.001316E-10  8.999188E-10
+Solars-Stream  1   5      1.653974E-06  1.654073E-06   -3.414493E-10 -3.408218E-10
+Solars-Stream  1   6      1.592050E-06  1.592596E-06    2.665547E-10  2.661239E-10
+Solars-Stream  1   7      2.072302E-06  2.072953E-06    4.375117E-11  4.434819E-11
+Solars-Stream  1   8     -1.987076E-07 -1.985349E-07    2.621108E-12  2.203095E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -1.916564E-07 -1.912550E-07    2.592727E-12  2.425288E-12
+
+              Fourier component #  5
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1     -6.195349E-08 -6.194111E-08    1.644257E-10  1.640675E-10
+Solars-Stream  1   2     -8.721515E-08 -8.720511E-08    7.525326E-11  7.492515E-11
+Solars-Stream  1   3     -2.006296E-07 -2.006319E-07   -8.725124E-11 -8.760263E-11
+Solars-Stream  1   4      6.788157E-07  6.786635E-07    2.766388E-11  2.781959E-11
+Solars-Stream  1   5      1.789337E-07  1.784491E-07   -2.268942E-10 -2.264602E-10
+Solars-Stream  1   6      1.062612E-06  1.062464E-06    3.945735E-11  3.933708E-11
+Solars-Stream  1   7      1.711597E-06  1.711547E-06    2.602626E-11  2.702118E-11
+Solars-Stream  1   8     -4.468931E-07 -4.465531E-07    3.392437E-12  3.129294E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -7.104061E-07 -7.103037E-07    5.044315E-12  4.539678E-12
+
+              Fourier component #  6
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1     -9.090980E-07 -9.091679E-07    2.877371E-10  2.876714E-10
+Solars-Stream  1   2     -1.131015E-06 -1.131159E-06    4.202742E-10  4.201070E-10
+Solars-Stream  1   3     -2.089859E-06 -2.090347E-06    7.336903E-10  7.332320E-10
+Solars-Stream  1   4     -2.280629E-08 -2.328441E-08    4.630638E-10  4.635513E-10
+Solars-Stream  1   5     -2.181499E-07 -2.181701E-07    1.280313E-10  1.274707E-10
+Solars-Stream  1   6     -1.277481E-07 -1.282886E-07   -1.368961E-10 -1.369912E-10
+Solars-Stream  1   7      1.298845E-07  1.299924E-07    2.306563E-11  2.317145E-11
+Solars-Stream  1   8     -5.276918E-08 -5.280997E-08    4.905593E-12  4.579901E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      6.746311E-07  6.739401E-07   -1.205815E-11 -1.165154E-11
+
+              Fourier component #  7
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      4.285306E-07  4.286289E-07   -6.926003E-10 -6.921470E-10
+Solars-Stream  1   2      4.136725E-07  4.137737E-07   -5.187358E-10 -5.184230E-10
+Solars-Stream  1   3      2.992131E-07  2.993179E-07   -2.521471E-10 -2.520701E-10
+Solars-Stream  1   4     -1.538013E-07 -1.538701E-07    9.864197E-12  1.007319E-11
+Solars-Stream  1   5      6.505054E-07  6.499822E-07   -1.068816E-10 -1.062663E-10
+Solars-Stream  1   6      8.949265E-07  8.951467E-07    1.547811E-10  1.550021E-10
+Solars-Stream  1   7      5.120129E-07  5.124424E-07    2.817503E-11  2.806505E-11
+Solars-Stream  1   8      2.720413E-07  2.716980E-07   -2.090853E-12 -1.872292E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      7.451024E-07  7.449550E-07    4.448447E-12  4.895878E-12
+
+              Fourier component #  8
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1     -3.704482E-07 -3.707747E-07    8.839905E-10  8.834137E-10
+Solars-Stream  1   2     -3.347915E-07 -3.350351E-07    4.907646E-10  4.904546E-10
+Solars-Stream  1   3     -1.276816E-07 -1.274988E-07   -2.043666E-10 -2.042811E-10
+Solars-Stream  1   4     -4.432704E-08 -4.446809E-08   -6.815074E-11 -6.808091E-11
+Solars-Stream  1   5     -7.848022E-07 -7.849739E-07   -1.043871E-10 -1.045096E-10
+Solars-Stream  1   6      5.230163E-07  5.234522E-07    6.538504E-11  6.539803E-11
+Solars-Stream  1   7      6.963361E-07  6.970586E-07    1.663635E-11  1.681606E-11
+Solars-Stream  1   8      2.716192E-07  2.719254E-07    1.444932E-11  1.404360E-11
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -4.469479E-07 -4.470270E-07   -2.832269E-12 -3.017402E-12
+
+              Fourier component #  9
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      6.190189E-08  6.142529E-08    1.096471E-09  1.095812E-09
+Solars-Stream  1   2      8.327002E-08  8.277714E-08    7.587047E-10  7.583272E-10
+Solars-Stream  1   3      1.782288E-07  1.777076E-07    2.071609E-10  2.073100E-10
+Solars-Stream  1   4      6.913579E-07  6.913820E-07   -3.298682E-10 -3.297349E-10
+Solars-Stream  1   5     -2.947986E-07 -2.949369E-07   -1.797335E-10 -1.793552E-10
+Solars-Stream  1   6     -4.000327E-07 -4.001291E-07   -2.727120E-11 -2.719255E-11
+Solars-Stream  1   7     -5.174677E-07 -5.179021E-07   -2.448054E-11 -2.457028E-11
+Solars-Stream  1   8      7.405480E-07  7.407331E-07   -2.183050E-12 -1.985880E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      3.995915E-08  3.996539E-08   -2.992539E-12 -2.168293E-12
+
+              Fourier component # 10
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      6.222630E-08  6.211643E-08    2.893516E-10  2.889900E-10
+Solars-Stream  1   2      8.495821E-08  8.480556E-08    2.728020E-10  2.724947E-10
+Solars-Stream  1   3      1.863499E-07  1.860057E-07    2.776094E-10  2.775014E-10
+Solars-Stream  1   4     -5.560726E-07 -5.565730E-07    3.751167E-10  3.751086E-10
+Solars-Stream  1   5      5.846443E-07  5.847371E-07    1.779867E-10  1.774457E-10
+Solars-Stream  1   6      4.394451E-07  4.400071E-07    4.913408E-11  4.924658E-11
+Solars-Stream  1   7      8.191114E-09  8.118022E-09   -1.041304E-11 -1.044553E-11
+Solars-Stream  1   8      1.857002E-08  1.855412E-08    3.223913E-12  3.406112E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -8.249789E-07 -8.252781E-07   -4.546551E-12 -4.634111E-12
+
+              Fourier component # 11
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      3.264305E-07  3.271066E-07   -1.136069E-09 -1.135246E-09
+Solars-Stream  1   2      3.239388E-07  3.246059E-07   -8.307783E-10 -8.302237E-10
+Solars-Stream  1   3      2.785997E-07  2.791548E-07   -3.518545E-10 -3.518383E-10
+Solars-Stream  1   4     -2.567727E-09 -2.466369E-09    2.095387E-11  2.101988E-11
+Solars-Stream  1   5      2.883487E-07  2.883220E-07    9.308221E-11  9.306611E-11
+Solars-Stream  1   6     -2.948362E-07 -2.949888E-07   -4.214298E-11 -4.222131E-11
+Solars-Stream  1   7     -4.925974E-07 -4.929881E-07   -3.049970E-11 -3.063735E-11
+Solars-Stream  1   8     -9.723489E-08 -9.726795E-08    1.682014E-12  1.587222E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      3.932251E-07  3.930088E-07    7.325557E-13  7.178957E-13
+
+              Fourier component # 12
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      2.346897E-07  2.344176E-07    5.146767E-10  5.144434E-10
+Solars-Stream  1   2      2.396216E-07  2.393472E-07    3.902895E-10  3.901326E-10
+Solars-Stream  1   3      2.389032E-07  2.386460E-07    2.021551E-10  2.020388E-10
+Solars-Stream  1   4      6.017586E-07  6.015442E-07    1.743448E-10  1.745660E-10
+Solars-Stream  1   5      5.478420E-07  5.477442E-07   -1.943602E-10 -1.937499E-10
+Solars-Stream  1   6     -2.866391E-07 -2.866340E-07    5.868801E-12  5.923919E-12
+Solars-Stream  1   7      1.708278E-07  1.704391E-07   -2.773540E-11 -2.775413E-11
+Solars-Stream  1   8      1.767973E-07  1.764988E-07   -7.803843E-12 -7.163522E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      4.333928E-07  4.333689E-07   -4.191556E-12 -4.085848E-12
+
+              Fourier component # 13
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      2.272606E-07  2.277488E-07   -8.407053E-10 -8.400999E-10
+Solars-Stream  1   2      2.254767E-07  2.259584E-07   -6.152452E-10 -6.148377E-10
+Solars-Stream  1   3      1.936784E-07  1.940794E-07   -2.617864E-10 -2.617725E-10
+Solars-Stream  1   4     -2.018026E-09 -1.945045E-09    1.022537E-11  1.027214E-11
+Solars-Stream  1   5      2.045984E-07  2.045799E-07    6.972012E-11  6.970318E-11
+Solars-Stream  1   6     -2.097857E-07 -2.098967E-07   -2.980278E-11 -2.986084E-11
+Solars-Stream  1   7     -3.484899E-07 -3.487726E-07   -2.178632E-11 -2.187966E-11
+Solars-Stream  1   8     -7.444260E-08 -7.446352E-08    1.278340E-12  1.207712E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      2.750858E-07  2.749318E-07    5.555550E-13  5.382412E-13
+
+              Fourier component # 14
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1      2.065349E-08  2.060448E-08    3.358301E-12  3.269930E-12
+Solars-Stream  1   2      3.255212E-08  3.248136E-08    3.011324E-11  3.002651E-11
+Solars-Stream  1   3      8.684785E-08  8.667897E-08    8.598867E-11  8.596782E-11
+Solars-Stream  1   4     -2.950011E-07 -2.952516E-07    1.536848E-10  1.536820E-10
+Solars-Stream  1   5      2.927257E-07  2.927761E-07    1.107163E-10  1.104178E-10
+Solars-Stream  1   6      2.245038E-07  2.247929E-07    3.188532E-11  3.194098E-11
+Solars-Stream  1   7      5.100904E-09  5.066170E-09   -4.568518E-12 -4.584375E-12
+Solars-Stream  1   8      7.817623E-09  7.811158E-09    1.724260E-12  1.814123E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1     -4.223090E-07 -4.224595E-07   -2.266955E-12 -2.312623E-12
+
+              Fourier component # 15
+
+              sza str       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Stream  1   1     -8.305198E-10 -1.015584E-09    5.560691E-10  5.557143E-10
+Solars-Stream  1   2      6.412008E-09  6.221208E-09    3.955128E-10  3.952889E-10
+Solars-Stream  1   3      4.083745E-08  4.063846E-08    1.380474E-10  1.380581E-10
+Solars-Stream  1   4      2.322247E-07  2.322342E-07   -7.755381E-11 -7.751990E-11
+Solars-Stream  1   5     -1.303750E-07 -1.304231E-07   -9.775355E-11 -9.758911E-11
+Solars-Stream  1   6     -1.582298E-07 -1.582607E-07   -2.248949E-11 -2.246587E-11
+Solars-Stream  1   7     -1.907510E-07 -1.909003E-07   -1.052702E-11 -1.056437E-11
+Solars-Stream  1   8      2.695715E-07  2.696386E-07   -1.343441E-12 -1.270445E-12
+
+              sza vza       Analytic    Finite-diff       Analytic    Finite-diff
+
+Solars-Users   1   1      1.042103E-08  1.042615E-08   -1.317344E-12 -1.012770E-12
