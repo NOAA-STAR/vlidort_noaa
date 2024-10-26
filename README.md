@@ -46,3 +46,7 @@ README for NOAA team
    2) ./pcrtm_vlidort_compile.bash v ifort
        change the compiler accordingly, check the makefile in PCRTM_VLIDORT_Main
    3) ./pcrtm_omps_simulator.exe
+
+3. Compile vlidort library 
+make -f makefile_vlidort clean
+make -f makefile_vlidort
