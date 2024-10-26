@@ -1,0 +1,11 @@
+makefile_vlidort
+
+add subdir pcrtm_vlidort
+add files util/interp_utility.f90  and file_utility.f90
+add subdir vsup/vbrdf_lin 
+modify vsup/makefile.vsup
+delete any *.o *.mod files under every single subdirectories
+e.g., vsup/vbrdf_experimental/mod vsup/vbrdf_experimental/obj
+
+make -f makefile_vlidort clean
+make -f makefile_vlidort
