@@ -1,0 +1,36 @@
+# cut from makefile, by Xiong 5/12/2022
+#  5/5/22. R. Spurr.
+#    --Makefile for testing the new experimental BRDF system
+
+#  For testing individual kernel output (selected geometry)
+
+VBRDF_SUP_SOURCES =
+
+#SOURCES_BRDF_EXPTESTER_KERNELS_ONLY += \
+#   $(VBRDF_PATH)/vlidort_experimental_local_pars.f90 \
+#   $(VBRDF_PATH)/vbrdf_sup_inputs_def.f90 \
+#   $(VBRDF_PATH)/vbrdf_sup_outputs_def.f90\
+#   $(VBRDF_PATH)/vbrdf_sup_aux.f90	  \
+#   $(VBRDF_PATH)/vbrdf_sup_kernels_old_reduced.f90	  \
+#   $(VBRDF_PATH)/vbrdf_sup_kernels_experimental.f90 \
+#   $(VBRDF_PATH)/V2p8p5_VBRDF_exptester_Konly.f90
+
+#  For testing full BRDF output (DBbounce and Fouriers, 36 geometries)
+
+VBRDF_SUP_SOURCES +=   \
+   $(BASE_SOURCES) \
+   $(VBRDF_PATH)/vbrdf_findpar.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_inputs_def.f90 \
+   $(VBRDF_PATH)/vbrdf_sup_core_def.f90\
+   $(VBRDF_PATH)/vbrdf_sup_outputs_def.f90\
+   $(VBRDF_PATH)/vbrdf_sup_aux.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_kernels_experimental.f90 \
+   $(VBRDF_PATH)/vbrdf_sup_core_routines.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_core_masters.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_makerfourier_routines.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_masters.f90	  \
+   $(VBRDF_PATH)/vbrdf_sup_mod.f90	  
+
+$(OBJ_PATH)/%.o : $(VBRDF_PATH)/%.f90
+	$(FC) $(FFLAGS) $< -o $@
+

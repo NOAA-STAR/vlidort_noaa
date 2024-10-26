@@ -1,0 +1,5 @@
+  FATAL:   Wrong input from VBRDF input file-read
+   ------ Here are the messages and actions 
+    ** Number of messages =   1
+Message #   1 : read failure for Kernel names, indices, amplitude control and factors, # parameters, parameters
+Action  #   1 : Re-set: Entry is incorrect in input file

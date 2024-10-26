@@ -1,0 +1,10 @@
+4
+48
+5000
+
+
+open(1,file='TOPLEVEL.inp', status = 'old' )
+   read(1,*)nstokes
+   read(1,*)nstreams ; ncoeffs = 2*nstreams
+   read(1,*)n_Quadangles
+   close(1)

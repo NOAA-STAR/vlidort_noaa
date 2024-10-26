@@ -1,0 +1,48 @@
+The "vfzmat" supplement has code that generates F- and Z-matrices and Greek coefficients, 
+given an input data file of Fmatrix entries at a set of specified input angles. It is not very efficient,
+so I have written some code to speed things up. The basic "Master" routine is now divided into
+two parts :-
+
+1, the "premaster" subroutine which calculates all necessary geometrical information
+  and all spherical functions and which is called first, outside of any hyperspectral loop;
+
+2, the "postmaster" subroutine which delivers the desired F/Z/Greekmat output, using the
+   precalculated  geometry/GSFs, and which is designed to be used inside a spectral loop.
+
+To save memory, I used  allocatable arrays for  quadrature-related goemetry and spherical functions,
+and used dynmaical memeory where possible.
+
+The test compares thw two ways of doing things, using a real data set of ice habitat F-matrix.
+All runs were done for 50 hyperspectral points, with the number of stokes elements (NSTOKES)
+and discrete-ordinates (NSTREAMS) and quadratures (NQUADS) controlled with a short input file
+(TOPLEVEL.inp). The  quadrature number is hard-wired parameter statement in the old master routine,
+and this must be changed by hand.
+
+I tried NSTOKES = 1/3/4 and NSTREAMS = 16/24/48, and NQuads = 2000/5000. In all cases, the
+F-matrix and Greekmat results are identical (old and new). There's a small file with some
+timing results for 50 points. Speedups are quite impressive.
+
+Tarball contains the following code
+
+Build.sh   				compiler, creates 2 executables TOLD and TNEW
+
+Ice_Fmatrices.txt			Ice habitat F-matrix data (498 input angles)
+
+Test_vfzmat_original.f90		test for Old master
+Test_vfzmat_reeng.f90 			test for New masters (Pre and Post)
+
+Timing_2_Res				Timing results on my Desktop
+
+TOPLEVEL.inp 				Top level input (Nstokes/Nstreams/NQuads)
+
+vfzmat_DevelopCoeffs.f90		Old module
+vfzmat_ExpandCoeffs.f90			Old Module
+vfzmat_Master.f90			Old Module
+vfzmat_Numerical.f90			Old Module
+vfzmat_PhasMat.f90			Old Module
+vfzmat_Rotation.f90			Old Module
+
+vfzmat_DevelopCoeffs_New.f90		New Module
+vfzmat_Post_Master.f90			New Module
+vfzmat_Pre_Master.f90			New Module
+
