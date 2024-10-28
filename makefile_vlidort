@@ -12,7 +12,7 @@
 # UPGRADE TO VLIDORT VERSION 2.8.3, 31 March 2021
 
 #
-# Define some variables
+# Define the path macros
 #
 
 UTIL_PATH       = util
@@ -35,7 +35,6 @@ OBJ_FILES = $(OBJ_PATH)/*.o
 #
 # Define default shell make will use
 #
-
 SHELL = /bin/bash
 
 #
@@ -138,15 +137,14 @@ BASE_SOURCES := \
    $(VLID_DEF_PATH)/vlidort_outputs_def.f90	 \
    $(VLID_DEF_PATH)/vlidort_io_defs.f90		 \
    $(VLID_DEF_PATH)/vlidort_work_def.f90	 \
-   $(VLID_DEF_PATH)/vlidort_lin_inputs_def.f90	  \
-   $(VLID_DEF_PATH)/vlidort_lin_sup_brdf_def.f90  \
-   $(VLID_DEF_PATH)/vlidort_lin_sup_ss_def.f90	  \
-   $(VLID_DEF_PATH)/vlidort_lin_sup_sleave_def.f90\
-   $(VLID_DEF_PATH)/vlidort_lin_sup_def.f90	  \
-   $(VLID_DEF_PATH)/vlidort_lin_outputs_def.f90	  \
-   $(VLID_DEF_PATH)/vlidort_lin_io_defs.f90	  \
-   $(VLID_DEF_PATH)/vlidort_lin_work_def.f90	  \
-
+   $(VLID_DEF_PATH)/vlidort_lin_inputs_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_brdf_def.f90 \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_ss_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_sleave_def.f90 \
+   $(VLID_DEF_PATH)/vlidort_lin_sup_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_lin_outputs_def.f90	 \
+   $(VLID_DEF_PATH)/vlidort_lin_io_defs.f90      \
+   $(VLID_DEF_PATH)/vlidort_lin_work_def.f90	 \
 
 M_SOURCES :=     \
    $(VLID_MAIN_PATH1)/lapack_tools.f90		 \
@@ -232,7 +230,10 @@ VPATH := $(UTIL_PATH) $(VLID_TEST_PATH) \
 	$(VLID_MAIN_PATH) $(VLID_MAIN_PATH1) $(VLID_MAIN_PATH2)
 
 
-# Main vector tests
+#
+# Define object files
+#
+
 VLIDORT_SOURCES_F90 =  \
    $(BASE_SOURCES) $(UTIL_SOURCES) \
    $(FO_SOURCES_Vector) $(FO_SOURCES_L_Vector) \
@@ -246,10 +247,6 @@ VLIDORT_SOURCES_F90 =  \
    $(VBRDF_SUP_ACCESS_SOURCES) \
    $(VBRDF_LINSUP_ACCESS_SOURCES) \
    $(PCRTM_SOURCES) \
-
-#
-# Define object files
-#
 
 VLIDORT_SOURCES := $(notdir $(filter %.f90, $(VLIDORT_SOURCES_F90)))
 VLIDORT_OBJECTS := $(patsubst %.f90, %.o, $(addprefix $(OBJ_PATH)/, $(VLIDORT_SOURCES)))
