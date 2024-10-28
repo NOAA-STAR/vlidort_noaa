@@ -45,7 +45,7 @@ SHELL = /bin/bash
 FC = ifort
 
 #  gfortran
-#FC = gfortran
+# FC = gfortran
 
 #  g95
 #FC = g95
@@ -302,6 +302,7 @@ $(LIBDIR) $(TMPDIR) :
 
 .PHONY: clean
 clean:
-	rm -f *.o $(OBJ_FILES) *.mod $(MOD_FILES) *.log *.exe $(main) $(LIBRARY)
+	rm -f *.o *.mod  *.log *.exe $(main) $(LIBRARY)
 	rm -fr $(OBJ_PATH) $(MOD_PATH) $(PREFIX)/lib $(PREFIX)/include
+	rm -f $(VLID_TEST_PATH)/*.o $(VLID_TEST_PATH)/*.mod
 
