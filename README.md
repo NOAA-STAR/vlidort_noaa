@@ -50,3 +50,5 @@ README for NOAA team
 3. Compile vlidort library 
    1) make -f makefile_vlidort clean
    2) make -f makefile_vlidort
+   3) make -f makefile_vlidort install
+   4) make -f makefile_vlidort test
