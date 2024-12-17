@@ -19,8 +19,8 @@ MODULE PCRTM_Sw_Aux_m
 ! ###############################################################
 
 USE VLIDORT_PARS_m, Only :  MAX_SZANGLES
-  USE interp_utility
-  USE file_utility
+  USE pcrtm_interp_utility
+  USE pcrtm_file_utility
 
 
 ! SETUP SOME CONSTANT VARIABLES (from old driver of ming, useful ?)

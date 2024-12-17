@@ -207,8 +207,8 @@ LCS_SOURCES := \
    $(VLID_MAIN_PATH2)/vlidort_lcs_masters_V2p8p3.f90
 
 UTIL_SOURCES  := \
-   $(UTIL_PATH)/interp_utility.f90 \
-   $(UTIL_PATH)/file_utility.f90\
+   $(UTIL_PATH)/pcrtm_interp_utility.f90 \
+   $(UTIL_PATH)/pcrtm_file_utility.f90\
 
 PCRTM_SOURCES := \
    $(VLID_PCRTM_PATH)/PCRTM_SW_Aux.f90 \

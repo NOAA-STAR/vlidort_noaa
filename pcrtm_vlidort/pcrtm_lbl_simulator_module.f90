@@ -22,8 +22,8 @@ MODULE pcrtm_lbl_simulator
   USE PCRTM_Sw_Aux_m
   USE GAS_OPT_m
 
-  USE Interp_Utility
-  USE File_Utility
+  USE PCRTM_Interp_Utility
+  USE PCRTM_File_Utility
 
   IMPLICIT NONE
   PRIVATE

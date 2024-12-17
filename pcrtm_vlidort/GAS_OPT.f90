@@ -19,8 +19,8 @@ MODULE GAS_OPT_m
 ! ###############################################################
 
 USE VLIDORT_PARS_m, only: MAXLAYERS
-USE interp_utility
-USE file_utility
+USE pcrtm_interp_utility
+USE pcrtm_file_utility
 
   INTEGER, parameter :: ngas_afgl = 28                 !currently has 28 afglgas(hirtranordercopy from lihui)
   INTEGER, parameter :: nlev_afgl = 50,nlay_afgl=49
