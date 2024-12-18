@@ -8,7 +8,6 @@ PROGRAM CRTM_VLIDORT_Example
   USE CRTM_Module
   USE pcrtm_interp_utility
   USE pcrtm_file_utility
-  USE pcrtm_lbl_simulator
   USE crtm_lbl_simulator
   ! Disable all implicit typing
   IMPLICIT NONE
