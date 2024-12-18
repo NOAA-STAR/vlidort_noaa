@@ -52,3 +52,9 @@ README for NOAA team
    2) make -f makefile_vlidort
    3) make -f makefile_vlidort install
    4) make -f makefile_vlidort test
+
+4. Compile and run vlidort-crtm  
+   1) cd  vlidort-crtm
+   2) modify the makefile with the proper CRTM library and the vlidort library pathes
+   3) make 
+   
