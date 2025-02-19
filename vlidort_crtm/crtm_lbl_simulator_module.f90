@@ -14,6 +14,8 @@ MODULE crtm_lbl_simulator
   USE CRTM_Options_Define,        ONLY: CRTM_Options_type, &
                                         CRTM_Options_IsValid
 
+  USE CRTM_RTSolution_Define  ,   ONLY: CRTM_RTSolution_type
+
   ! module files of vfzmat
   USE vfzmat_Rayleigh_m
   USE vfzmat_Pre_Master_m
@@ -38,21 +40,24 @@ MODULE crtm_lbl_simulator
   IMPLICIT NONE
   PRIVATE
 
-  PUBLIC ::  crtm_omps_simulator
-
+  PUBLIC  ::  crtm_omps_simulator
+  INTEGER, PUBLIC :: N_USER_Channels
+ 
   CONTAINS
 
     FUNCTION crtm_omps_simulator(  &
     Atmosphere , &  ! Input, M
     Surface    , &  ! Input, M
     Geometry   , &  ! Input, M
+    RTSolution , &  ! Input, L,M
     Options    ) &  ! Optional input, M
   RESULT( Error_Status )
     ! Arguments
-    TYPE(CRTM_Atmosphere_type),        INTENT(IN OUT) :: Atmosphere(:)     ! M
-    TYPE(CRTM_Surface_type),           INTENT(IN)     :: Surface(:)        ! M
-    TYPE(CRTM_Geometry_type),          INTENT(IN)     :: Geometry(:)       ! M
-    TYPE(CRTM_Options_type), OPTIONAL, INTENT(IN)     :: Options(:)        ! M
+    TYPE(CRTM_Atmosphere_type),        INTENT(IN OUT) :: Atmosphere
+    TYPE(CRTM_Surface_type),           INTENT(IN)     :: Surface
+    TYPE(CRTM_Geometry_type),          INTENT(IN)     :: Geometry
+    TYPE(CRTM_RTSolution_type),        INTENT(IN OUT) :: RTSolution(:)
+    TYPE(CRTM_Options_type), OPTIONAL, INTENT(IN)     :: Options
     ! Function result
     INTEGER :: Error_Status
 
@@ -356,6 +361,13 @@ MODULE crtm_lbl_simulator
          N_USER_OBSGEOMS, &
          szangles,user_relazms,user_vzangles)
 
+    Psfc_in = Atmosphere%pressure(size(Atmosphere%Pressure))
+    IF (VLIDORT_CRTM) THEN
+         N_USER_OBSGEOMS = 1
+         szangles(1) = Geometry%Source_Zenith_Angle
+         user_vzangles(1) = Geometry%Sensor_Zenith_Angle
+         user_relazms(1) = Geometry%Source_Azimuth_Angle -  Geometry%Sensor_Azimuth_Angle 
+    END IF
 
     ! 1.2 read in user spectral grid:
     file_usrwv='./PCRTM_VLIDORT_Config/user_wav_inputs.dat'
@@ -416,20 +428,20 @@ MODULE crtm_lbl_simulator
 
     IF (VLIDORT_CRTM) THEN
       ! 1.5.1 interpolating reference gas profile to CRTM  pressure grid
-      nlevel_atm = size(Atmosphere(1)%Pressure)
+      nlevel_atm = size(Atmosphere%Pressure)
       ngas_atm = ngas_ref
-      pres_atm(1:nlevel_atm) = Atmosphere(1)%Pressure(:)
+      pres_atm(1:nlevel_atm) = Atmosphere%Pressure(:)
       CALL Interpolate_User_grid(pres_atm,nlevel_atm,nlevel_ref, psfc_out_ref,&             !input
          pres_ref, temp_ref,vmr_ref,&                          !input
          temp_atm,vmr_atm,nlayers,temp_at_psfc)                !output
       !ngas_atm = 2
       !vmr_atm = 0.0
-      temp_atm(1:nlevel_atm) = Atmosphere(1)%Temperature(:)
-      !vmr_atm(1:nlevel_atm, 1) = Atmosphere(1)%Absorber(:,1) * (28.97/18.015)/1000.0 ! g/kg -> vmr
-      !vmr_atm(1:nlevel_atm, 3) = Atmosphere(1)%Absorber(:,2) *1.0e-6 ! ppmv to vmr
-      psfc_out = Atmosphere(1)%Level_Pressure(nlevel_atm)
+      temp_atm(1:nlevel_atm) = Atmosphere%Temperature(:)
+      vmr_atm(1:nlevel_atm, 1) = Atmosphere%Absorber(:,1) * (28.97/18.015)/1000.0 ! g/kg -> vmr
+      vmr_atm(1:nlevel_atm, 3) = Atmosphere%Absorber(:,2) *1.0e-6 ! ppmv to vmr
+      psfc_out = Atmosphere%Level_Pressure(nlevel_atm)
       nameProf = 'CRTM_Profile'
-      !print*, size(Atmosphere(1)%Pressure),size(Atmosphere(1)%Level_Pressure),psfc_out
+      !print*, size(Atmosphere%Pressure),size(Atmosphere%Level_Pressure),psfc_out
 
     ELSE
       nlevel_atm = nlevel_ref
@@ -877,8 +889,21 @@ MODULE crtm_lbl_simulator
 
     ENDDO
     ! END  B A N D - L O O P ************************
+    CALL cpu_time(e2)
 
     ! --SECTION 3: output at user wave grid
+    IF (VLIDORT_CRTM) THEN
+      RTSolution(1:ncount_usr)%Stokes(1)  = Iup_output2_usr(1,1:ncount_usr)
+      RTSolution(1:ncount_usr)%Stokes(2)  = Qup_output2_usr(1,1:ncount_usr)
+      RTSolution(1:ncount_usr)%Stokes(3)  = Uup_output2_usr(1,1:ncount_usr)
+      RTSolution(1:ncount_usr)%Stokes(4)  = 0
+      RTSolution(1:ncount_usr)%radiance  = Iup_output2_usr(1,1:ncount_usr)
+      N_USER_Channels = ncount_usr
+      Error_Status = ZERO
+      PRINT*,'tot time',e2-e1
+      RETURN 
+    ENDIF
+
     IF ( DO_Planetary) THEN
       wnStart = wnum_usr(1)
       PRINT*,'wnStart',wnStart
@@ -897,18 +922,11 @@ MODULE crtm_lbl_simulator
            Iup_output2_usr(1:n_geometries,1:ncount_usr),Qup_output2_usr(1:n_geometries,1:ncount_usr),&
            Uup_output2_usr(1:n_geometries,1:ncount_usr))
     ENDIF
-
-
-
-
-    CALL cpu_time(e2)
     PRINT*,'tot time',e2-e1
-    STOP
 
     ! #############################################
     ! MODIFIED LUT COUPLING DRIVER ENDED
     ! #############################################
-    Error_Status = ZERO
     RETURN 
 
   END FUNCTION crtm_omps_simulator

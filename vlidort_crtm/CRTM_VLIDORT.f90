@@ -8,7 +8,9 @@ PROGRAM CRTM_VLIDORT_Example
   USE CRTM_Module
   USE pcrtm_interp_utility
   USE pcrtm_file_utility
-  USE crtm_lbl_simulator
+  USE crtm_lbl_simulator, only : crtm_omps_simulator, &
+                                 N_USER_Channels
+
   ! Disable all implicit typing
   IMPLICIT NONE
   ! ============================================================================
@@ -31,13 +33,15 @@ PROGRAM CRTM_VLIDORT_Example
   INTEGER, PARAMETER :: N_ABSORBERS = 2
   INTEGER, PARAMETER :: N_CLOUDS    = 1
   INTEGER, PARAMETER :: N_AEROSOLS  = 1
+  INTEGER, PARAMETER :: Max_N_Channels  = 5000
   ! ...but only ONE Sensor at a time
   INTEGER, PARAMETER :: N_SENSORS = 1
 
-  ! Test GeometryInfo angles. The test scan angle is based
-  ! on the default Re (earth radius) and h (satellite height)                                                      
-  REAL(fp), PARAMETER :: ZENITH_ANGLE = 30.0_fp
-  REAL(fp), PARAMETER :: SCAN_ANGLE   = 26.37293341421_fp
+  ! Test GeometryInfo angles.                                                  
+  REAL(fp), PARAMETER :: Sensor_Zenith_Angle    = 30.0_fp
+  REAL(fp), PARAMETER :: Sensor_Azimuth_Angle   = 70.0_fp
+  REAL(fp), PARAMETER :: Solar_Zenith_Angle     = 10.0_fp
+  REAL(fp), PARAMETER :: Solar_Azimuth_Angle    = 126.0_fp
   ! ============================================================================
   
   
@@ -50,9 +54,8 @@ PROGRAM CRTM_VLIDORT_Example
   INTEGER :: Error_Status
   INTEGER :: Allocate_Status
   INTEGER :: n_Channels
-  INTEGER :: k1, k2, l, m
-  ! Declarations for RTSolution comparison
-  INTEGER :: n_l, n_m
+  INTEGER :: l, m
+
 
 
   ! ============================================================================
@@ -61,7 +64,8 @@ PROGRAM CRTM_VLIDORT_Example
   TYPE(CRTM_Atmosphere_type)              :: Atm(N_PROFILES)
   TYPE(CRTM_Surface_type)                 :: Sfc(N_PROFILES)
   TYPE(CRTM_Geometry_type)                :: Geometry(N_PROFILES)
- 
+  TYPE(CRTM_RTSolution_type)              :: RTSolution(Max_N_Channels, N_PROFILES)
+
   ! ============================================================================
 
 
@@ -77,8 +81,8 @@ PROGRAM CRTM_VLIDORT_Example
     CALL Display_Message( PROGRAM_NAME, Message, FAILURE )  
     STOP
   END IF
-  ! ============================================================================
-
+  
+  CALL CRTM_RTSolution_Create( RTSolution, N_LAYERS )
 
 
 
@@ -94,19 +98,23 @@ PROGRAM CRTM_VLIDORT_Example
   ! --------------------------------
    CALL Load_Atm_Data()
    CALL Load_Sfc_Data()
-print*, atm(1)%Pressure
 
   ! 4b. GeometryInfo input
   ! ----------------------
   ! All profiles are given the same value
-  !  The Sensor_Scan_Angle is optional.
   CALL CRTM_Geometry_SetValue( Geometry, &
-                               Sensor_Zenith_Angle = ZENITH_ANGLE, &
-                               Sensor_Scan_Angle   = SCAN_ANGLE )
+                               Sensor_Zenith_Angle   = Sensor_Zenith_Angle, &
+                               Sensor_Azimuth_Angle  = Sensor_Azimuth_Angle, &
+                               Source_Zenith_Angle   = Solar_Zenith_Angle, &
+                               Source_Azimuth_Angle  = Solar_Azimuth_Angle )
 
-  !CALL pcrtm_omps_simulator()
-  Error_Status = crtm_omps_simulator(atm,sfc,Geometry)
+  DO m = 1,  N_PROFILES
+    Error_Status = crtm_omps_simulator(atm(m), sfc(m), Geometry(m), RTSolution(:,m))
+    print*, RTSolution(1:N_USER_Channels,m)%radiance
+  END DO
+
   CALL CRTM_Atmosphere_Destroy(Atm)
+  CALL CRTM_RTSolution_Destroy(RTSolution)
 
  
 CONTAINS
