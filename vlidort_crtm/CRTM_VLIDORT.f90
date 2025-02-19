@@ -9,7 +9,7 @@ PROGRAM CRTM_VLIDORT_Example
   USE pcrtm_interp_utility
   USE pcrtm_file_utility
   USE crtm_lbl_simulator, only : crtm_omps_simulator, &
-                                 N_USER_Channels
+                               N_Channels => N_USER_Channels 
 
   ! Disable all implicit typing
   IMPLICIT NONE
@@ -53,7 +53,7 @@ PROGRAM CRTM_VLIDORT_Example
   CHARACTER(256) :: Sensor_Id
   INTEGER :: Error_Status
   INTEGER :: Allocate_Status
-  INTEGER :: n_Channels
+
   INTEGER :: l, m
 
 
@@ -110,7 +110,7 @@ PROGRAM CRTM_VLIDORT_Example
 
   DO m = 1,  N_PROFILES
     Error_Status = crtm_omps_simulator(atm(m), sfc(m), Geometry(m), RTSolution(:,m))
-    print*, RTSolution(1:N_USER_Channels,m)%radiance
+    print*, RTSolution(1:N_Channels,m)%radiance
   END DO
 
   CALL CRTM_Atmosphere_Destroy(Atm)
