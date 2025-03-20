@@ -23,7 +23,7 @@ MAKE_FILE = makefile
 
 EXE_FILE = CRTM_VLIDORT
 
-OBJ_FILES =  crtm_lbl_simulator_module.o $(EXE_FILE).o
+OBJ_FILES =  CRTM_VLIDORT_ChannelInfo.o crtm_lbl_simulator_module.o $(EXE_FILE).o
 
 # CRTM Libraray path
 CRTM=./CRTM_lib/libsrc

@@ -15,6 +15,7 @@ MODULE crtm_lbl_simulator
                                         CRTM_Options_IsValid
 
   USE CRTM_RTSolution_Define  ,   ONLY: CRTM_RTSolution_type
+  USE CRTM_VLIDORT_ChannelInfo,   ONLY: ChannelInfo_Define
 
   ! module files of vfzmat
   USE vfzmat_Rayleigh_m
@@ -50,6 +51,7 @@ MODULE crtm_lbl_simulator
     Surface    , &  ! Input, M
     Geometry   , &  ! Input, M
     RTSolution , &  ! Input, L,M
+    ChannelInfo, &  ! Input
     Options    ) &  ! Optional input, M
   RESULT( Error_Status )
     ! Arguments
@@ -57,6 +59,7 @@ MODULE crtm_lbl_simulator
     TYPE(CRTM_Surface_type),           INTENT(IN)     :: Surface
     TYPE(CRTM_Geometry_type),          INTENT(IN)     :: Geometry
     TYPE(CRTM_RTSolution_type),        INTENT(IN OUT) :: RTSolution(:)
+    TYPE( ChannelInfo_Define),         INTENT(IN)     :: ChannelInfo
     TYPE(CRTM_Options_type), OPTIONAL, INTENT(IN)     :: Options
     ! Function result
     INTEGER :: Error_Status
@@ -371,7 +374,10 @@ MODULE crtm_lbl_simulator
 
     ! 1.2 read in user spectral grid:
     file_usrwv='./PCRTM_VLIDORT_Config/user_wav_inputs.dat'
-    CALL read_usr_wv(path0,file_usrwv,nwv_usr,wv_usr)  !xiong: add the filename
+    !CALL read_usr_wv(path0,file_usrwv,nwv_usr,wv_usr)  !xiong: add the filename
+    nwv_usr = ChannelInfo%n_channels
+    wv_usr  = ChannelInfo%wavenumber
+
     ! setting band based on wv_usr
     CALL Set_Usr_wvgrid(path0,nwv_usr,wv_usr,&                                !input
          st_band,end_band,wv_band,wvidx_band,ndat_band)         !output

@@ -8,8 +8,9 @@ PROGRAM CRTM_VLIDORT_Example
   USE CRTM_Module
   USE pcrtm_interp_utility
   USE pcrtm_file_utility
-  USE crtm_lbl_simulator, only : crtm_omps_simulator, &
-                               N_Channels => N_USER_Channels 
+  USE crtm_lbl_simulator, only : crtm_omps_simulator
+  
+  USE CRTM_VLIDORT_ChannelInfo, ONLY: ChannelInfo_Define, set_usr_wv
 
   ! Disable all implicit typing
   IMPLICIT NONE
@@ -53,7 +54,7 @@ PROGRAM CRTM_VLIDORT_Example
   CHARACTER(256) :: Sensor_Id
   INTEGER :: Error_Status
   INTEGER :: Allocate_Status
-
+  INTEGER :: n_Channels
   INTEGER :: l, m
 
 
@@ -65,7 +66,7 @@ PROGRAM CRTM_VLIDORT_Example
   TYPE(CRTM_Surface_type)                 :: Sfc(N_PROFILES)
   TYPE(CRTM_Geometry_type)                :: Geometry(N_PROFILES)
   TYPE(CRTM_RTSolution_type)              :: RTSolution(Max_N_Channels, N_PROFILES)
-
+  TYPE( ChannelInfo_Define) :: ChannelInfo
   ! ============================================================================
 
 
@@ -81,6 +82,13 @@ PROGRAM CRTM_VLIDORT_Example
     CALL Display_Message( PROGRAM_NAME, Message, FAILURE )  
     STOP
   END IF
+   
+  ChannelInfo%start_wv = 25974.0
+  ChannelInfo%end_wv = 33898.0
+  ChannelInfo%resolution = 10.0
+  CALL set_usr_wv(ChannelInfo)
+
+  N_Channels = ChannelInfo%N_Channels
   
   CALL CRTM_RTSolution_Create( RTSolution, N_LAYERS )
 
@@ -109,7 +117,7 @@ PROGRAM CRTM_VLIDORT_Example
                                Source_Azimuth_Angle  = Solar_Azimuth_Angle )
 
   DO m = 1,  N_PROFILES
-    Error_Status = crtm_omps_simulator(atm(m), sfc(m), Geometry(m), RTSolution(:,m))
+    Error_Status = crtm_omps_simulator(atm(m), sfc(m), Geometry(m), RTSolution(:,m), ChannelInfo)
     print*, RTSolution(1:N_Channels,m)%radiance
   END DO
 
